@@ -13,8 +13,9 @@ public:
 	void Update();
 	void ReboundX();
 	void ReboundY();
+	RectF GetBoundingBox();
 private:
-	RectF rect;
+	RectF boundingBox;
 	Graphics& gfx;
 	Vec2 pos;
 	Vec2 vel;

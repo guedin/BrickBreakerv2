@@ -13,3 +13,8 @@ void Brick::Draw(Graphics & gfx)
 {
 	gfx.DrawRect(int(topLeftPos.x), int(topLeftPos.y), int(topLeftPos.x + width), int(topLeftPos.y + height), c);
 }
+
+RectF Brick::GetBoundingBox()
+{
+	return RectF(topLeftPos, topLeftPos + Vec2(width, height));
+}

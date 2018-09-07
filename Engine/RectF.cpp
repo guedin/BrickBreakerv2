@@ -30,7 +30,7 @@ void RectF::MoveCenterTo(Vec2 pos)
 	right = pos.x + width / 2;
 }
 
-int RectF::IsOutsideScreen(Graphics & gfx)
+int RectF::IsOutsideScreenWidth(Graphics & gfx)
 {
 	if (left <= 0)
 	{
@@ -40,13 +40,21 @@ int RectF::IsOutsideScreen(Graphics & gfx)
 	{
 		return 2;
 	}
-	else if (top <= 0)
+	else
 	{
-		return 3;
+		return 0;
+	}
+}
+
+int RectF::IsOutsideScreenHeight(Graphics & gfx)
+{
+	if (top <= 0)
+	{
+		return 1;
 	}
 	else if (bottom >= gfx.ScreenHeight)
 	{
-		return 4;
+		return 2;
 	}
 	else
 	{
@@ -57,4 +65,16 @@ int RectF::IsOutsideScreen(Graphics & gfx)
 void RectF::Draw(Graphics& gfx)
 {
 	gfx.DrawRect(int(left), int(top), int(right), int(bottom), Colors::Cyan);
+}
+
+int RectF::IsOverlapping(RectF rec2)
+{
+	if (right > rec2.left && left < rec2.right && bottom > rec2.top && top < rec2.bottom)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
