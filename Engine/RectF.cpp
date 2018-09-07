@@ -71,10 +71,22 @@ int RectF::IsOverlapping(RectF rec2)
 {
 	if (right > rec2.left && left < rec2.right && bottom > rec2.top && top < rec2.bottom)
 	{
-		return 1;
+		if (GetCenter().GetNormalized().y > rec2.GetCenter().GetNormalized().y)
+		{
+			return 1;
+		}
+		else
+		{
+			return 2;
+		}
 	}
 	else
 	{
 		return 0;
 	}
+}
+
+Vec2 RectF::GetCenter()
+{
+	return Vec2(left + width, top + height);
 }

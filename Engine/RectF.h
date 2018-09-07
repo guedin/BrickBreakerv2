@@ -12,6 +12,7 @@ public:
 	int IsOutsideScreenHeight(Graphics& gfx);
 	void Draw(Graphics& gfx);
 	int IsOverlapping(RectF rec2);
+	Vec2 GetCenter();
 private:
 	float top;
 	float bottom;

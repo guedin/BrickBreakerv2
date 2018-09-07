@@ -46,5 +46,5 @@ private:
 	/*  User Variables              */
 	/********************************/
 	Ball ball;
-	Brick brick = Brick(Vec2(100, 100), 45, 15, Colors::Blue);
+	Brick brick = Brick(Vec2(60, 100), 45, 15, Colors::Blue);
 };

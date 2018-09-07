@@ -44,6 +44,11 @@ void Game::UpdateModel()
 	{
 		ball.ReboundY();
 	}
+
+	if (ball.GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 2)
+	{
+		ball.ReboundX();
+	}
 }
 
 void Game::ComposeFrame()
