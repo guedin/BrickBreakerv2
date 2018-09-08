@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Ball.h"
 #include "Brick.h"
+#include "BrickLayout.h"
 
 class Game
 {
@@ -36,6 +37,7 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
+	void GenerateLayout();
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -45,6 +47,6 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
+	BrickLayout layout;
 	Ball ball;
-	Brick brick = Brick(Vec2(60, 100), 45, 15, Colors::Blue);
 };

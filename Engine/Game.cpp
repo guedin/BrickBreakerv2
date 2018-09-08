@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	ball(gfx, Vec2(300.0f, 300.0f), Vec2(-200.0f,-200.0f))
+	ball(gfx, Vec2(300.0f, 300.0f), Vec2(-200.0f,-200.0f), layout)
 {
 }
 
@@ -40,7 +40,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	ball.Update();
-	if (ball.GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 1)
+	/*if (ball.GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 1)
 	{
 		ball.ReboundY();
 	}
@@ -48,11 +48,15 @@ void Game::UpdateModel()
 	if (ball.GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 2)
 	{
 		ball.ReboundX();
-	}
+	}*/
+}
+
+void Game::GenerateLayout()
+{
 }
 
 void Game::ComposeFrame()
 {
 	ball.Draw(gfx);
-	brick.Draw(gfx);
+	layout.Draw(gfx);
 }

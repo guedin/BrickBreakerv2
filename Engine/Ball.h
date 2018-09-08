@@ -3,12 +3,13 @@
 #include "Graphics.h"
 #include "RectF.h"
 #include "FrameTimer.h"
+#include "BrickLayout.h"
 
 class Ball
 {
 public:
 	Ball() = default;
-	Ball(Graphics& gfx, Vec2 pos, Vec2 vel);
+	Ball(Graphics& gfx, Vec2 pos, Vec2 vel, BrickLayout& in_layout);
 	void Draw(Graphics& gfx);
 	void Update();
 	void ReboundX();
@@ -17,6 +18,7 @@ public:
 private:
 	RectF boundingBox;
 	Graphics& gfx;
+	BrickLayout& layout;
 	Vec2 pos;
 	Vec2 vel;
 	Color c = Colors::Green;

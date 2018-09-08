@@ -1,11 +1,12 @@
 #include "Ball.h"
 
-Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel)
+Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel, BrickLayout& in_layout)
 	:
 	pos(in_pos),
 	vel(in_vel),
 	boundingBox(in_pos, radius*2, radius*2),
-	gfx(in_gfx)
+	gfx(in_gfx),
+	layout(in_layout)
 {
 }
 
@@ -47,6 +48,16 @@ void Ball::Update()
 		pos.y = gfx.ScreenHeight - radius;
 		boundingBox.MoveCenterTo(pos);
 	}
+
+	/*if (GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 1)
+	{
+		ball.ReboundY();
+	}
+
+	if (GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 2)
+	{
+		ReboundX();
+	}*/
 }
 
 void Ball::ReboundX()
