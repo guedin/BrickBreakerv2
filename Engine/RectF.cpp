@@ -62,6 +62,38 @@ int RectF::IsOutsideScreenHeight(Graphics & gfx)
 	}
 }
 
+int RectF::IsOutsideCanvasWidth(Canvas & canvas)
+{
+	if (left <= canvas.GetLeft())
+	{
+		return 1;
+	}
+	else if (right >= canvas.GetRight())
+	{
+		return 2;
+	}
+	else
+	{
+		return 0;
+	};
+}
+
+int RectF::IsOutsideCanvasHeight(Canvas & canvas)
+{
+	if (top <= canvas.GetTop())
+	{
+		return 1;
+	}
+	else if (bottom >= canvas.GetBottom())
+	{
+		return 2;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 void RectF::Draw(Graphics& gfx)
 {
 	gfx.DrawRect(int(left), int(top), int(right), int(bottom), Colors::Cyan);

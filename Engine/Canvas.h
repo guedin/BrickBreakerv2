@@ -8,14 +8,20 @@ public:
 	Canvas() = default;
 	Canvas(Graphics& in_gfx);
 	void Init();
-	int GetWidth();
-	int GetHeight();
+	float GetWidth() const;
+	float GetHeight() const;
+	float GetLeft() const;
+	float GetRight() const;
+	float GetTop() const;
+	float GetBottom() const;
 	void Draw();
 private:
 	Graphics & gfx;
-	int width = 600;
-	int height = 500;
+	float width = 600.0f;
+	float height = 500.0f;
 	Vec2 center;
-	int top;
-	int left;
+	float top;
+	float left;
+	float bottom;
+	float right;
 };

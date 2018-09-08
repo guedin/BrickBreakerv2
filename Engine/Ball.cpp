@@ -1,11 +1,12 @@
 #include "Ball.h"
 
-Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel, BrickLayout& in_layout)
+Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel, Canvas& in_canvas, BrickLayout& in_layout)
 	:
 	pos(in_pos),
 	vel(in_vel),
-	boundingBox(in_pos, radius*2, radius*2),
+	boundingBox(in_pos, radius * 2, radius * 2),
 	gfx(in_gfx),
+	canvas(in_canvas),
 	layout(in_layout)
 {
 }
@@ -21,31 +22,31 @@ void Ball::Update()
 	pos += vel * dt;
 	boundingBox.MoveCenterTo(pos);
 
-	if (boundingBox.IsOutsideScreenWidth(gfx) == 1)
+	if (boundingBox.IsOutsideCanvasWidth(canvas) == 1)
 	{
 		ReboundX();
-		pos.x = radius;
+		pos.x = canvas.GetLeft() + radius;
 		boundingBox.MoveCenterTo(pos);
 	}
 
-	if (boundingBox.IsOutsideScreenWidth(gfx) == 2)
+	if (boundingBox.IsOutsideCanvasWidth(canvas) == 2)
 	{
 		ReboundX();
-		pos.x = gfx.ScreenWidth - radius;
+		pos.x = canvas.GetRight() - radius;
 		boundingBox.MoveCenterTo(pos);
 	}
 
-	if (boundingBox.IsOutsideScreenHeight(gfx) == 1)
+	if (boundingBox.IsOutsideCanvasHeight(canvas) == 1)
 	{
 		ReboundY();
-		pos.y = radius;
+		pos.y = canvas.GetTop() + radius;
 		boundingBox.MoveCenterTo(pos);
 	}
 
-	if (boundingBox.IsOutsideScreenHeight(gfx) == 2)
+	if (boundingBox.IsOutsideCanvasHeight(canvas) == 2)
 	{
 		ReboundY();
-		pos.y = gfx.ScreenHeight - radius;
+		pos.y = canvas.GetBottom() - radius;
 		boundingBox.MoveCenterTo(pos);
 	}
 

@@ -10,30 +10,52 @@ Canvas::Canvas(Graphics& in_gfx)
 void Canvas::Init()
 {
 	center = Vec2(gfx.ScreenWidth / 2, gfx.ScreenHeight / 2);
-	left = int(center.x - width / 2);
-	top = int(center.y - height / 2);
+	left = center.x - width / 2;
+	right = center.x + width / 2;
+	top = center.y - height / 2;
+	bottom = center.y + height / 2;
 }
 
-int Canvas::GetWidth()
+float Canvas::GetWidth() const
 {
 	return width;
 }
 
-int Canvas::GetHeight()
+float Canvas::GetHeight() const
 {
 	return height;
 }
 
+float Canvas::GetLeft() const
+{
+	return left;
+}
+
+float Canvas::GetRight() const
+{
+	return right;
+}
+
+float Canvas::GetTop() const
+{
+	return top;
+}
+
+float Canvas::GetBottom() const
+{
+	return bottom;
+}
+
 void Canvas::Draw()
 {
-	for (int x = left; x < left + width; x++)
+	for (int x = int(left); x < int(left) + int(width); x++)
 	{
-		gfx.PutPixel(x, top, Colors::White);
-		gfx.PutPixel(x, top + height, Colors::White);
+		gfx.PutPixel(x, int(top), Colors::White);
+		gfx.PutPixel(x, int(top + height), Colors::White);
 	}
-	for (int y = top +1 ; y < top + height - 1; y++)
+	for (int y = int(top) +1 ; y < int(top + height) - 1; y++)
 	{
-		gfx.PutPixel(left, y, Colors::White);
-		gfx.PutPixel(left + width, y, Colors::White);
+		gfx.PutPixel(int(left), y, Colors::White);
+		gfx.PutPixel(int(left + width), y, Colors::White);
 	}
 }

@@ -5,12 +5,13 @@
 #include "FrameTimer.h"
 #include "BrickLayout.h"
 #include "SpriteCodex.h"
+#include "Canvas.h"
 
 class Ball
 {
 public:
 	Ball() = default;
-	Ball(Graphics& gfx, Vec2 pos, Vec2 vel, BrickLayout& in_layout);
+	Ball(Graphics& gfx, Vec2 pos, Vec2 vel,Canvas& in_canvas, BrickLayout& in_layout);
 	void Draw(Graphics& gfx) const;
 	void Update();
 	void ReboundX();
@@ -20,6 +21,7 @@ public:
 private:
 	RectF boundingBox;
 	Graphics& gfx;
+	Canvas& canvas;
 	BrickLayout& layout;
 	Vec2 pos;
 	Vec2 vel;
