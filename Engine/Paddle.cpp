@@ -35,3 +35,8 @@ void Paddle::Update(Keyboard & kbd)
 	}
 	boundingBox.MoveCenterTo(pos);
 }
+
+RectF Paddle::GetBoundingBox() const
+{
+	return boundingBox;
+}

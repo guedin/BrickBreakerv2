@@ -44,6 +44,7 @@ void Game::UpdateModel()
 {
 	ball.Update();
 	paddle.Update(wnd.kbd);
+	ball.ManagePaddleCollision();
 	ball.ManageBrickCollision();
 }
 

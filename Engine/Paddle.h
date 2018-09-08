@@ -12,6 +12,7 @@ public:
 	Paddle(Canvas& canvas);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& kbd);
+	RectF GetBoundingBox() const;
 private:
 	Canvas & canvas;
 	Vec2 pos = Vec2(canvas.GetCenter().x, 500.0f);

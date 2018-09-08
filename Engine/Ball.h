@@ -18,6 +18,7 @@ public:
 	void ReboundX();
 	void ReboundY();
 	void ManageBrickCollision();
+	void ManagePaddleCollision();
 	RectF GetBoundingBox() const;
 private:
 	RectF boundingBox;
@@ -30,4 +31,5 @@ private:
 	Color c = Colors::Green;
 	static constexpr int radius = 7;
 	FrameTimer ft;
+	bool bPaddleColEnabled = true;
 };

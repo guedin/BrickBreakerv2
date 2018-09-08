@@ -28,6 +28,7 @@ void Ball::Update()
 		ReboundX();
 		pos.x = canvas.GetLeft() + radius;
 		boundingBox.MoveCenterTo(pos);
+		bPaddleColEnabled = true;
 	}
 
 	if (boundingBox.IsOutsideCanvasWidth(canvas) == 2)
@@ -35,6 +36,7 @@ void Ball::Update()
 		ReboundX();
 		pos.x = canvas.GetRight() - radius;
 		boundingBox.MoveCenterTo(pos);
+		bPaddleColEnabled = true;
 	}
 
 	if (boundingBox.IsOutsideCanvasHeight(canvas) == 1)
@@ -42,6 +44,7 @@ void Ball::Update()
 		ReboundY();
 		pos.y = canvas.GetTop() + radius;
 		boundingBox.MoveCenterTo(pos);
+		bPaddleColEnabled = true;
 	}
 
 	if (boundingBox.IsOutsideCanvasHeight(canvas) == 2)
@@ -49,9 +52,8 @@ void Ball::Update()
 		ReboundY();
 		pos.y = canvas.GetBottom() - radius;
 		boundingBox.MoveCenterTo(pos);
+		bPaddleColEnabled = true;
 	}
-
-	
 }
 
 void Ball::ReboundX()
@@ -92,6 +94,25 @@ void Ball::ManageBrickCollision()
 		if (col == 2)
 		{
 			ReboundX();
+		}
+		bPaddleColEnabled = true;
+	}
+}
+
+void Ball::ManagePaddleCollision()
+{
+	if (bPaddleColEnabled)
+	{
+		if (GetBoundingBox().IsOverlapping(paddle.GetBoundingBox()) == 1)
+		{
+			ReboundY();
+			bPaddleColEnabled = false;
+		}
+
+		if (GetBoundingBox().IsOverlapping(paddle.GetBoundingBox()) == 2)
+		{
+			ReboundX();
+			bPaddleColEnabled = false;
 		}
 	}
 }
