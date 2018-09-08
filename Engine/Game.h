@@ -28,6 +28,7 @@
 #include "BrickLayout.h"
 #include "Canvas.h"
 #include "Paddle.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -38,7 +39,7 @@ public:
 	void Go();
 private:
 	void ComposeFrame();
-	void UpdateModel();
+	void UpdateModel(float dt);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -52,4 +53,5 @@ private:
 	BrickLayout layout;
 	Paddle paddle;
 	Ball ball;
+	FrameTimer ft;
 };

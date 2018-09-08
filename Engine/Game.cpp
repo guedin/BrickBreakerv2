@@ -28,22 +28,28 @@ Game::Game( MainWindow& wnd )
 	canvas(gfx),
 	layout(canvas),
 	paddle(canvas),
-	ball(gfx, Vec2(300.0f, 300.0f), Vec2(400.0f,-400.0f), canvas, layout, paddle)
+	ball(gfx, Vec2(300.0f, 300.0f), Vec2(200.0f,-200.0f), canvas, layout, paddle)
 {
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
-	UpdateModel();
+	gfx.BeginFrame();
+	float elapsedTime = ft.Mark();
+	while (elapsedTime > 0.0f)
+	{
+		const float dt = std::min(0.0025f, elapsedTime);
+		UpdateModel( dt );
+		elapsedTime -= dt;
+	}
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel(float dt)
 {
-	ball.Update();
 	paddle.Update(wnd.kbd);
+	ball.Update();
 	ball.ManagePaddleCollision();
 	ball.ManageBrickCollision();
 }

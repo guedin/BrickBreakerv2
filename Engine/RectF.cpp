@@ -103,7 +103,8 @@ int RectF::IsOverlapping(RectF rec2)
 {
 	if (right > rec2.left && left < rec2.right && bottom > rec2.top && top < rec2.bottom)
 	{
-		if (GetCenter().GetNormalized().y > rec2.GetCenter().GetNormalized().y)
+		float a = abs(GetCenter().x - rec2.GetCenter().x);
+		if (rec2.GetWidth()/2 > a)
 		{
 			return 1;
 		}
@@ -150,5 +151,5 @@ float RectF::GetHeight() const
 
 Vec2 RectF::GetCenter() const
 {
-	return Vec2(left + width, top + height);
+	return Vec2(left + width/2, top + height/2);
 }
