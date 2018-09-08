@@ -37,7 +37,6 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
-	void GenerateLayout();
 	/********************************/
 	/*  User Functions              */
 	/********************************/

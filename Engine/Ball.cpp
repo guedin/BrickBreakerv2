@@ -49,15 +49,7 @@ void Ball::Update()
 		boundingBox.MoveCenterTo(pos);
 	}
 
-	/*if (GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 1)
-	{
-		ball.ReboundY();
-	}
-
-	if (GetBoundingBox().IsOverlapping(brick.GetBoundingBox()) == 2)
-	{
-		ReboundX();
-	}*/
+	
 }
 
 void Ball::ReboundX()
@@ -68,6 +60,38 @@ void Ball::ReboundX()
 void Ball::ReboundY()
 {
 	vel.y = -vel.y;
+}
+
+void Ball::ManageBrickCollision()
+{
+	int dist = 99999;
+	int col = 0;
+	int ind;
+	for (int i = 0; i < layout.GetNBrick(); i++)
+	{
+		int curCol = GetBoundingBox().IsOverlapping(layout.GetBrick(i).GetBoundingBox());
+		Vec2 distVec = pos - layout.GetBrick(i).GetBoundingBox().GetCenter();
+		int curDist = int(distVec.GetLengthSq());
+		if (curCol != 0 && curDist < dist && !layout.GetBrick(i).GetIsDestroyed())
+		{
+			dist = curDist;
+			col = curCol;
+			ind = i;
+		}
+	}
+	if (col != 0)
+	{
+		layout.DestroyBrick(ind);
+		if (col == 1)
+		{
+			ReboundY();
+		}
+
+		if (col == 2)
+		{
+			ReboundX();
+		}
+	}
 }
 
 RectF Ball::GetBoundingBox()

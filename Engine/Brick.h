@@ -10,6 +10,8 @@ public:
 	Brick(Vec2 in_topLeftPos, float in_width, float in_height, Color in_c);
 	void Draw(Graphics& gfx) const;
 	RectF GetBoundingBox() const;
+	void Destroy();
+	bool GetIsDestroyed() const;
 private:
 	Vec2 topLeftPos;
 	float width;

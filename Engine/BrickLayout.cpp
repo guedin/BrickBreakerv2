@@ -22,6 +22,24 @@ void BrickLayout::Draw(Graphics& gfx)
 {
 	for (int i = 0; i < nBrick; i++)
 	{
-		bricks[i].Draw(gfx);
+		if (!bricks[i].GetIsDestroyed())
+		{
+			bricks[i].Draw(gfx);
+		}
 	}
+}
+
+int BrickLayout::GetNBrick() const
+{
+	return nBrick;
+}
+
+Brick & BrickLayout::GetBrick(int i)
+{
+	return bricks[i];
+}
+
+void BrickLayout::DestroyBrick(int i)
+{
+	bricks[i].Destroy();
 }

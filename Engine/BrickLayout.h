@@ -8,6 +8,9 @@ public:
 	BrickLayout();
 	void Generate();
 	void Draw(Graphics& gfx);
+	int GetNBrick() const;
+	Brick& GetBrick(int i);
+	void DestroyBrick(int i);
 private:
 	static constexpr int row = 15;
 	static constexpr int column = 3;

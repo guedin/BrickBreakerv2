@@ -14,6 +14,7 @@ public:
 	void Update();
 	void ReboundX();
 	void ReboundY();
+	void ManageBrickCollision();
 	RectF GetBoundingBox();
 private:
 	RectF boundingBox;
