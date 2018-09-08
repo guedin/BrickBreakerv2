@@ -14,8 +14,8 @@ public:
 	void DestroyBrick(int i);
 private:
 	static constexpr float topOffset = 50;
-	static constexpr int row = 10;
-	static constexpr int column = 7;
+	static constexpr int row = 15;
+	static constexpr int column = 5;
 	static constexpr int nBrick = row * column;
 	float brickWidth;
 	static constexpr float brickHeight = 15.0f;

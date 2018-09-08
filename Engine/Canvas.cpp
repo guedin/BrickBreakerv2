@@ -46,6 +46,11 @@ float Canvas::GetBottom() const
 	return bottom;
 }
 
+Vec2 Canvas::GetCenter() const
+{
+	return center;
+}
+
 void Canvas::Draw()
 {
 	for (int x = int(left); x < int(left) + int(width); x++)

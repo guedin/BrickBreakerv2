@@ -118,7 +118,37 @@ int RectF::IsOverlapping(RectF rec2)
 	}
 }
 
-Vec2 RectF::GetCenter()
+float RectF::GetLeft() const
+{
+	return left;
+}
+
+float RectF::GetRight() const
+{
+	return right;
+}
+
+float RectF::GetTop() const
+{
+	return top;
+}
+
+float RectF::GetBottom() const
+{
+	return bottom;
+}
+
+float RectF::GetWidth() const
+{
+	return width;
+}
+
+float RectF::GetHeight() const
+{
+	return height;
+}
+
+Vec2 RectF::GetCenter() const
 {
 	return Vec2(left + width, top + height);
 }

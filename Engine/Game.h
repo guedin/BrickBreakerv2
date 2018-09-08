@@ -27,6 +27,7 @@
 #include "Brick.h"
 #include "BrickLayout.h"
 #include "Canvas.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -49,5 +50,6 @@ private:
 	/********************************/
 	Canvas canvas;
 	BrickLayout layout;
+	Paddle paddle;
 	Ball ball;
 };

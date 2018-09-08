@@ -15,7 +15,14 @@ public:
 	int IsOutsideCanvasHeight(Canvas& canvas);
 	void Draw(Graphics& gfx);
 	int IsOverlapping(RectF rec2);
-	Vec2 GetCenter();
+	Vec2 GetCenter() const;
+	float GetLeft() const;
+	float GetRight() const;
+	float GetTop() const;
+	float GetBottom() const;
+	float GetWidth() const;
+	float GetHeight() const;
+
 private:
 	float top;
 	float bottom;

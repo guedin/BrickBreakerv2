@@ -14,10 +14,11 @@ public:
 	float GetRight() const;
 	float GetTop() const;
 	float GetBottom() const;
+	Vec2 GetCenter() const;
 	void Draw();
 private:
 	Graphics & gfx;
-	float width = 600.0f;
+	float width = 700.0f;
 	float height = 500.0f;
 	Vec2 center;
 	float top;

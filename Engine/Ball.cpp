@@ -1,13 +1,14 @@
 #include "Ball.h"
 
-Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel, Canvas& in_canvas, BrickLayout& in_layout)
+Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel, Canvas& in_canvas, BrickLayout& in_layout, Paddle& in_paddle)
 	:
 	pos(in_pos),
 	vel(in_vel),
 	boundingBox(in_pos, radius * 2, radius * 2),
 	gfx(in_gfx),
 	canvas(in_canvas),
-	layout(in_layout)
+	layout(in_layout),
+	paddle(in_paddle)
 {
 }
 

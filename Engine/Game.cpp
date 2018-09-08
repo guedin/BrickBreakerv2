@@ -27,7 +27,8 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	canvas(gfx),
 	layout(canvas),
-	ball(gfx, Vec2(300.0f, 300.0f), Vec2(400.0f,-400.0f), canvas, layout)
+	paddle(canvas),
+	ball(gfx, Vec2(300.0f, 300.0f), Vec2(400.0f,-400.0f), canvas, layout, paddle)
 {
 }
 
@@ -42,6 +43,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	ball.Update();
+	paddle.Update(wnd.kbd);
 	ball.ManageBrickCollision();
 }
 
@@ -49,5 +51,6 @@ void Game::ComposeFrame()
 {
 	canvas.Draw();
 	ball.Draw(gfx);
+	paddle.Draw(gfx);
 	layout.Draw(gfx);
 }
