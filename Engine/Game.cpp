@@ -25,6 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
+	canvas(gfx),
 	ball(gfx, Vec2(300.0f, 300.0f), Vec2(400.0f,-400.0f), layout)
 {
 }
@@ -45,6 +46,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	canvas.Draw();
 	ball.Draw(gfx);
 	layout.Draw(gfx);
 }

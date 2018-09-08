@@ -10,9 +10,9 @@ Ball::Ball(Graphics& in_gfx, Vec2 in_pos, Vec2 in_vel, BrickLayout& in_layout)
 {
 }
 
-void Ball::Draw(Graphics & gfx)
+void Ball::Draw(Graphics & gfx) const
 {
-	gfx.DrawCircle(pos, radius, c);
+	SpriteCodex::DrawBall(pos, gfx);
 }
 
 void Ball::Update()
@@ -94,7 +94,7 @@ void Ball::ManageBrickCollision()
 	}
 }
 
-RectF Ball::GetBoundingBox()
+RectF Ball::GetBoundingBox() const
 {
 	return boundingBox;
 }

@@ -26,6 +26,7 @@
 #include "Ball.h"
 #include "Brick.h"
 #include "BrickLayout.h"
+#include "Canvas.h"
 
 class Game
 {
@@ -46,6 +47,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
+	Canvas canvas;
 	BrickLayout layout;
 	Ball ball;
 };
