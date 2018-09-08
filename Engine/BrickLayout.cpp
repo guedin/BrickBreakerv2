@@ -1,18 +1,21 @@
 #include "BrickLayout.h"
 
-BrickLayout::BrickLayout()
+BrickLayout::BrickLayout(Canvas& in_canvas)
+	:
+	canvas(in_canvas)
 {
 	Generate();
 }
 
 void BrickLayout::Generate()
 {
+	brickWidth = canvas.GetWidth() / row;
 	int i = 0;
-	for (int x = 0; x < row; x++)
+	for (float x = 0; x < row; x++)
 	{
-		for (int y = 0; y < column; y++)
+		for (float y = 0; y < column; y++)
 		{
-			bricks[i] = Brick(Vec2(x*brickWidth, y*brickHeight), brickWidth, brickHeight, Color(255,255,0));
+			bricks[i] = Brick(Vec2(x*brickWidth + canvas.GetLeft(), y*brickHeight + canvas.GetTop() + topOffset), brickWidth, brickHeight, Color(255,255,0));
 			i++;
 		}
 	}
