@@ -17,8 +17,11 @@ public:
 	void Update();
 	void ReboundX();
 	void ReboundY();
+	void ReboundWeightedY(const RectF& rect);
 	void ManageBrickCollision();
-	void ManagePaddleCollision();
+	void CheckPaddleCollision();
+	void ApplyPaddleCollision(int col);
+	float GetDistanceFromCenter(const RectF& rect) const;
 	RectF GetBoundingBox() const;
 private:
 	RectF boundingBox;

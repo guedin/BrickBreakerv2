@@ -66,6 +66,23 @@ void Ball::ReboundY()
 	vel.y = -vel.y;
 }
 
+void Ball::ReboundWeightedY(const RectF& rect)
+{
+	float c;
+	float a = rect.GetRight() - rect.GetLeft();
+	float b = GetBoundingBox().GetCenter().x - rect.GetLeft();
+	c = b / a;
+	if (std::signbit(vel.x))
+	{
+		vel.x = -(400 * (1-c));
+	}
+	else
+	{
+		vel.x = 400 * c;
+	}
+	vel.y = -vel.y;
+}
+
 void Ball::ManageBrickCollision()
 {
 	float dist = 99999;
@@ -88,7 +105,7 @@ void Ball::ManageBrickCollision()
 		layout.DestroyBrick(ind);
 
 		// If ball is coming from inside, never ReboundY
-		if (col == 2 && (std::signbit(vel.x) == std::signbit(pos.x - layout.GetBrick(ind).GetBoundingBox().GetCenter().x))) { col = 1; }
+		if (col == 2 && (std::signbit(vel.x) == std::signbit(GetDistanceFromCenter(layout.GetBrick(ind).GetBoundingBox())))) { col = 1; }
 
 		if (col == 1)
 		{
@@ -119,27 +136,41 @@ void Ball::ManageBrickCollision()
 	}
 }
 
-void Ball::ManagePaddleCollision()
+void Ball::CheckPaddleCollision()
 {
 	if (bPaddleColEnabled)
 	{
 		int curCol = GetBoundingBox().IsOverlapping(paddle.GetBoundingBox());
 
-		// If ball is coming from inside, never ReboundY
-		if (curCol == 2 && (std::signbit(vel.x) == std::signbit(pos.x - paddle.GetBoundingBox().GetCenter().x))) { curCol = 1; }
-
-		if (curCol == 1)
+		if (curCol != 0)
 		{
-			ReboundY();
-			bPaddleColEnabled = false;
+			ApplyPaddleCollision(curCol);
 		}
-
-		if (curCol == 2)
-		{
-			ReboundX();
-			bPaddleColEnabled = false;
-		}
+		
 	}
+}
+
+void Ball::ApplyPaddleCollision(int col)
+{
+	// If ball is coming from inside, never ReboundY
+	if (col == 2 && (std::signbit(vel.x) == std::signbit(GetDistanceFromCenter(paddle.GetBoundingBox())))) { col = 1; }
+
+	if (col == 1)
+	{
+		ReboundWeightedY(paddle.GetBoundingBox());
+	}
+
+	if (col == 2)
+	{
+		ReboundX();
+	}
+
+	bPaddleColEnabled = false;
+}
+
+float Ball::GetDistanceFromCenter(const RectF& rect) const
+{
+	return pos.x - rect.GetCenter().x;
 }
 
 RectF Ball::GetBoundingBox() const
