@@ -68,14 +68,14 @@ void Ball::ReboundY()
 
 void Ball::ManageBrickCollision()
 {
-	int dist = 99999;
+	float dist = 99999;
 	int col = 0;
 	int ind;
 	for (int i = 0; i < layout.GetNBrick(); i++)
 	{
 		int curCol = GetBoundingBox().IsOverlapping(layout.GetBrick(i).GetBoundingBox());
 		Vec2 distVec = pos - layout.GetBrick(i).GetBoundingBox().GetCenter();
-		int curDist = int(distVec.GetLengthSq());
+		float curDist = distVec.GetLengthSq();
 		if (curCol != 0 && curDist < dist && !layout.GetBrick(i).GetIsDestroyed())
 		{
 			dist = curDist;
@@ -88,11 +88,27 @@ void Ball::ManageBrickCollision()
 		layout.DestroyBrick(ind);
 		if (col == 1)
 		{
+			if (layout.GetBrick(ind).GetBoundingBox().GetCenter().y < pos.y)
+			{
+				pos.y = layout.GetBrick(ind).GetBoundingBox().GetBottom() + radius;
+			}
+			else
+			{
+				pos.y = layout.GetBrick(ind).GetBoundingBox().GetTop() - radius;
+			}
 			ReboundY();
 		}
 
 		if (col == 2)
 		{
+			if (layout.GetBrick(ind).GetBoundingBox().GetCenter().x < pos.x)
+			{
+				pos.x = layout.GetBrick(ind).GetBoundingBox().GetRight() + radius;
+			}
+			else
+			{
+				pos.x = layout.GetBrick(ind).GetBoundingBox().GetLeft() - radius;
+			}
 			ReboundX();
 		}
 		bPaddleColEnabled = true;
