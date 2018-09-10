@@ -86,6 +86,10 @@ void Ball::ManageBrickCollision()
 	if (col != 0)
 	{
 		layout.DestroyBrick(ind);
+
+		// If ball is coming from inside, never ReboundY
+		if (col == 2 && (std::signbit(vel.x) == std::signbit(pos.x - layout.GetBrick(ind).GetBoundingBox().GetCenter().x))) { col = 1; }
+
 		if (col == 1)
 		{
 			if (layout.GetBrick(ind).GetBoundingBox().GetCenter().y < pos.y)
@@ -119,13 +123,18 @@ void Ball::ManagePaddleCollision()
 {
 	if (bPaddleColEnabled)
 	{
-		if (GetBoundingBox().IsOverlapping(paddle.GetBoundingBox()) == 1)
+		int curCol = GetBoundingBox().IsOverlapping(paddle.GetBoundingBox());
+
+		// If ball is coming from inside, never ReboundY
+		if (curCol == 2 && (std::signbit(vel.x) == std::signbit(pos.x - paddle.GetBoundingBox().GetCenter().x))) { curCol = 1; }
+
+		if (curCol == 1)
 		{
 			ReboundY();
 			bPaddleColEnabled = false;
 		}
 
-		if (GetBoundingBox().IsOverlapping(paddle.GetBoundingBox()) == 2)
+		if (curCol == 2)
 		{
 			ReboundX();
 			bPaddleColEnabled = false;

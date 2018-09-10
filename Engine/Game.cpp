@@ -28,7 +28,7 @@ Game::Game( MainWindow& wnd )
 	canvas(gfx),
 	layout(canvas),
 	paddle(canvas),
-	ball(gfx, Vec2(300.0f, 300.0f), Vec2(200.0f,-200.0f), canvas, layout, paddle)
+	ball(gfx, Vec2(250.0f, 300.0f), Vec2(200.0f,200.0f), canvas, layout, paddle)
 {
 }
 
